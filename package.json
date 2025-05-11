@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "playwright test"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.6",
@@ -15,5 +16,9 @@
     "elm": "^0.19.1-6",
     "elmstronaut": "^0.1.1",
     "tailwindcss": "^4.1.6"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.17"
   }
 }

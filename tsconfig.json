@@ -1,5 +1,10 @@
 {
   "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "types": ["@playwright/test", "astro/client"],
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist"]
 }

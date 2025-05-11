@@ -95,7 +95,7 @@ view model =
                 Html.text ""
         ]
     , div [ class "p-4 pb-0" ]
-        [ h3 [ class "text-lg font-semibold mt-0 mb-1 text-gray-800" ]
+        [ h2 [ class "text-lg font-semibold mt-0 mb-1 text-gray-800" ]
             [ text model.productName ]
         , span [ class "text-xl font-bold text-black mb-3 block" ]
             [ text model.price ]
@@ -126,7 +126,9 @@ viewColorOption selectedColorOption color =
         [ class finalClasses
         , style "background-color" color.hexCode
         , onClick (SelectColor color)
-    ][]
+        , Html.Attributes.attribute "data-testid" ("color-button-" ++ String.toLower color.name)
+        ]
+        []
     
 -- Main
 
