@@ -22,6 +22,8 @@ npm run build
 # Preview the production build locally
 npm run preview
 
+# Run Playwright tests
+npm run test
 
 ```
 
@@ -32,14 +34,17 @@ npm run preview
 ├── public/
 │   └── favicon.svg
 ├── src/
-│   ├── components/
+│   ├── assets/
 │   ├── elm/
 │   ├── layouts/
 │   ├── pages/
 │   ├── styles/
-│   └── package.json
-└── astro.config.mjs
-└── elm.json
+│   ├── mock/
+│   ├── tests/
+├── astro.config.mjs
+├── elm.json
+├── package.json
+└── README.md
 ```
 
 
