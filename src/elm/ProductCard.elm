@@ -96,21 +96,31 @@ view model =
             [ text model.productName ]
         , span [ class "text-xl font-bold text-black mb-3 block" ]
             [ text model.price ]
-        , viewColorOptions model.colors
+        , viewColorOptions model.selectedColor model.colors
         , p [ class "text-sm text-gray-600 leading-normal" ]
             [ text model.description ]
         ]
     ]
 
-viewColorOptions: List ColorOption -> Html Msg
-viewColorOptions colors = 
+viewColorOptions: ColorOption -> List ColorOption -> Html Msg
+viewColorOptions selectedColor colors =
     div [ class "mb-3 flex items-center gap-1.5"]
-    (List.map viewColorOption colors)
+    (List.map (viewColorOption selectedColor) colors)
 
-viewColorOption: ColorOption -> Html Msg
-viewColorOption color = 
-    button 
-        [ class "block relative appearance-none p-0 cursor-pointer rounded-full border-0 border-solid bg-cover flex-none w-[19px] h-[19px] outline outline-2 outline-solid outline-transparent outline-offset-[-3px] focus:outline-white active:outline-white [&.selected]:outline-white selected"
+viewColorOption: ColorOption -> ColorOption -> Html Msg
+viewColorOption selectedColorOption color =
+    let
+        baseClasses = "block relative appearance-none p-0 cursor-pointer rounded-full border-0 border-solid bg-cover flex-none w-[19px] h-[19px] outline outline-2 outline-solid outline-transparent outline-offset-[-3px] focus:outline-white active:outline-white bg-[" ++ color.hexCode ++ "]"
+        selectedSpecificStyling = "[&.selected]:outline-white"
+        isSelected = selectedColorOption == color
+        finalClasses =
+            if isSelected then
+                baseClasses ++ " " ++ selectedSpecificStyling ++ " selected"
+            else
+                baseClasses
+    in
+    button
+        [ class finalClasses
         , style "background-color" color.hexCode
         , onClick (SelectColor color)
     ][]
