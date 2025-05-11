@@ -55,14 +55,17 @@ init flags =
             , description = flags.description
             , badge = flags.badge
             , selectedImageUrl = 
-                case List.head flags.imageUrls of
-                    Just firstImage -> firstImage.url
-                    Nothing -> "" 
+                flags.imageUrls
+                    |> List.head
+                    |> Maybe.map(\image -> image.url)
+                    |> Maybe.withDefault ""
             , selectedColor = 
-                case List.head flags.colors of
-                    Just firstColor -> firstColor
-                    Nothing -> { name = "", hexCode = "" }
+                flags.colors
+                    |> List.head
+                    |> Maybe.map(\color -> color)
+                    |> Maybe.withDefault { name = "", hexCode = "" }
             }
+            
     in
     (initialModel, Cmd.none)
 
